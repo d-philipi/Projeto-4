@@ -1,16 +1,3 @@
-function comparador() { 
-	return Math.random() - 0.5; 
-}
-
-const gifs = [
-    {primeira:"./midias/bobrossparrot.gif",segunda:"./midias/bobrossparrot.gif"},
-    {primeira:"./midias/explodyparrot.gif",segunda:"./midias/explodyparrot.gif"},
-    {primeira:"./midias/fiestaparrot.gif",segunda:"./midias/fiestaparrot.gif"},
-    {primeira:"./midias/metalparrot.gif",segunda:"./midias/metalparrot.gif"},
-    {primeira:"./midias/revertitparrot.gif",segunda:"./midias/revertitparrot.gif"},
-    {primeira:"./midias/tripletsparrot.gif",segunda:"./midias/tripletsparrot.gif"},
-    {primeira:"./midias/unicornparrot.gif",segunda:"./midias/unicornparrot.gif"}]
-
 let clicada = 0;
 let pontuacao = 0;
 let contador = 0;
@@ -23,6 +10,27 @@ let id;
 
 let baralho;
 let minhaArray = [];
+
+let possuiclasse;
+let primeiraselecionada = '';
+let segundaselecionada = '';
+let primeirafrente = '';
+let primeiracostas = '';
+let segundafrente = '';
+let segundacostas = '';
+
+function comparador() { 
+	return Math.random() - 0.5; 
+}
+
+const gifs = [
+    {primeira:"./midias/bobrossparrot.gif",segunda:"./midias/bobrossparrot.gif"},
+    {primeira:"./midias/explodyparrot.gif",segunda:"./midias/explodyparrot.gif"},
+    {primeira:"./midias/fiestaparrot.gif",segunda:"./midias/fiestaparrot.gif"},
+    {primeira:"./midias/metalparrot.gif",segunda:"./midias/metalparrot.gif"},
+    {primeira:"./midias/revertitparrot.gif",segunda:"./midias/revertitparrot.gif"},
+    {primeira:"./midias/tripletsparrot.gif",segunda:"./midias/tripletsparrot.gif"},
+    {primeira:"./midias/unicornparrot.gif",segunda:"./midias/unicornparrot.gif"}]
 
 function embaralhar(card){
     for(let k = 0; m > k; k++){
@@ -51,8 +59,8 @@ function distribuircartas(){
         n = n + 1;
     }
 
-    embaralhar(gifs);
     m = n/2;
+    embaralhar(gifs);
     embaralhar(minhaArray);
 
     for (let i = 0; n > i; i++){
@@ -76,13 +84,28 @@ function distribuircartas(){
 
 distribuircartas();
 
-let possuiclasse;
-let primeiraselecionada = '';
-let segundaselecionada = '';
-let primeirafrente = '';
-let primeiracostas = '';
-let segundafrente = '';
-let segundacostas = '';
+function virar(){
+    const frente = document.querySelectorAll('li .frente');
+    const costas = document.querySelectorAll('li .costas');
+    
+    for(let k = 0; k < frente.length; k++){
+    frente[k].classList.add('selecionada');
+    costas[k].classList.add('selecionada');
+  }
+    setTimeout(desvirar,1500);
+}
+
+setTimeout(virar,0500);
+
+function desvirar(){
+    const frente = document.querySelectorAll('li .frente');
+    const costas = document.querySelectorAll('li .costas');
+    
+   for(let k = 0; k < frente.length; k++){
+    frente[k].classList.remove('selecionada');
+    costas[k].classList.remove('selecionada');
+   }
+}
 
 function selecionar(carta){
     clicada++;
